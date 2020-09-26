@@ -1,8 +1,8 @@
 import React from 'react'
-
+import Home from './Home'
 const App = () => {
   return (
-    <h1>React development has begun!</h1>
+    <Home/>
   )
 }
 
