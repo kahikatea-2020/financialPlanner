@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
-import {Link} from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { logout } from '../store/actions/auth'
 class NavbarComponent extends Component {
   render() {
     return (
@@ -14,7 +15,10 @@ class NavbarComponent extends Component {
             <Nav.Link href="#link">Link</Nav.Link>
           </Nav>
           <Nav className="ml-auto">
-            <Link to='/login'><Button style={{marginRight:"10px"}} variant="dark">Login</Button></Link>
+            {this.props.userId ? <Button style={{ marginRight: "10px" }} variant="dark" onClick={() => {
+              this.props.logout()
+              location.replace('/#/')
+              }}>Logout</Button> : <Link to='/login'><Button style={{ marginRight: "10px" }} variant="dark">Login</Button></Link>}
             <Link to='/signup'><Button variant="outline-dark">Sign Up</Button></Link>
           </Nav>
 
@@ -24,4 +28,12 @@ class NavbarComponent extends Component {
   }
 }
 
-export default NavbarComponent
+const mapStateToProps = state => ({
+  userId: state.auth.user.id
+})
+
+const mapDispatchToProps = {
+  logout
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarComponent)
