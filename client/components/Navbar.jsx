@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Navbar, Nav, Button } from 'react-bootstrap'
+import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 
 class NavbarComponent extends Component {
@@ -15,7 +15,7 @@ class NavbarComponent extends Component {
           </Nav>
           <Nav className="ml-auto">
             <Link to='/login'><Button style={{marginRight:"10px"}} variant="dark">Login</Button></Link>
-            <Link to='/register'><Button variant="outline-dark">Sign Up</Button></Link>
+            <Link to='/signup'><Button variant="outline-dark">Sign Up</Button></Link>
           </Nav>
 
         </Navbar.Collapse>
