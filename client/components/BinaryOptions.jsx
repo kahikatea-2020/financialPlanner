@@ -18,13 +18,18 @@ class BinaryOptions extends Component {
 
   calculate = async () => {
     let count = 0
-    await this.setState({currentAmount: this.state.initialAmount})
-    while (this.state.currentAmount < this.state.targetAmount) {
-      await this.setState({ currentAmount: Number(this.state.currentAmount) + (Number(this.state.exposedBalance) / 100) * Number(this.state.currentAmount) * (1 + Number(this.state.rewardPercent) / 100) })
-      count++
-      console.log(count)
-      console.log(this.state.currentAmount)
+    if(this.state.targetAmount <= 0 || this.state.rewardPercent <=0 || this.state.initialAmount <=0 || this.state.exposedBalance <= 0){
+      return 
+    } else {
+      await this.setState({currentAmount: this.state.initialAmount})
+      while (this.state.currentAmount < this.state.targetAmount) {
+        await this.setState({ currentAmount: Number(this.state.currentAmount) + (Number(this.state.exposedBalance) / 100) * Number(this.state.currentAmount) * (Number(this.state.rewardPercent) / 100) })
+        count++
+        console.log(count)
+        console.log(this.state.currentAmount)
+      }
     }
+    
     await this.setState({ finalCount: count })
   }
   render() {
@@ -65,9 +70,9 @@ class BinaryOptions extends Component {
             }} /> : this.state.exposedBalance + "%"}
           </div>
           <Button variant='dark' onClick={() => this.calculate()}>Calculate Amount of Remaining Successful Trades</Button>
-
+          <h2>{this.state.finalCount + ' '} Sucessful Trades Remaining </h2>
         </Container>
-          <h2>{this.state.finalCount}</h2>
+         
 
       </>
     )
