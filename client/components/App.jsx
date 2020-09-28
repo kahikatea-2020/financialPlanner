@@ -5,6 +5,8 @@ import {Route} from 'react-router-dom'
 import Login from './Login'
 import Profile from './Profile'
 import Register from './Register'
+import BinaryOptions from './BinaryOptions'
+
 const App = () => {
   return (
     <>
@@ -13,6 +15,7 @@ const App = () => {
       <Route path='/login' exact component = {Login}/>
       <Route path='/register' exact component = {Register}/>
       <Route path='/profile' exact component = {Profile}/>
+      <Route path='/binaryOptions' exact component = {BinaryOptions}/>
     </>
   )
 }
