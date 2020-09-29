@@ -1,0 +1,33 @@
+.calculatorInput{
+  display:flex;
+  align-items: center;
+  margin-bottom:10px;
+  flex-wrap:wrap;
+}
+
+.calculatorInput p{
+  margin-right:50px;
+  margin-bottom:0px;
+  margin-left:50px;
+}
+
+.calculatorInput button{
+  border:none;
+  padding:5px;
+  width:100px;
+  border-radius:5px;
+  background:darkgray;
+  color:white;
+}
+
+.calculatorInput button:hover{
+  background:rgb(154, 92, 235);
+}
+
+.calculatorContainer{
+  background:white;
+  padding:50px;
+  border-radius: 20px;
+  width:fit-content;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+}
