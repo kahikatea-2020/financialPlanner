@@ -7,3 +7,19 @@
   background: #241441e8;
   color:white;
 }
+.carousel-item{
+  height:fit-content !important;
+}
+
+.homeDescriptions i{
+  font-size:5rem;
+  padding:20px;
+  width:100%;
+}
+.homeDescriptions {
+  text-align:center;
+}
+
+.columnHome{
+  padding:50px;
+}
