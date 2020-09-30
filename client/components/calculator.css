@@ -3,6 +3,7 @@
   align-items: center;
   margin-bottom:10px;
   flex-wrap:wrap;
+  transition:500ms;
 }
 
 .calculatorInput p{
@@ -18,10 +19,12 @@
   border-radius:5px;
   background:darkgray;
   color:white;
+  transition:500ms;
 }
 
 .calculatorInput button:hover{
   background:rgb(154, 92, 235);
+  transition:500ms;
 }
 
 .calculatorContainer{
@@ -29,5 +32,5 @@
   padding:50px;
   border-radius: 20px;
   width:fit-content;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+  transition:500ms;
 }
