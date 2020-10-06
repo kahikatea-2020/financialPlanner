@@ -45,6 +45,7 @@
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.5.2",
+    "camelcase-keys": "^6.2.2",
     "cors": "^2.8.5",
     "css-loader": "^4.3.0",
     "errorhandler": "^1.5.1",

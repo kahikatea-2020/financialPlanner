@@ -1,17 +1,17 @@
 
 exports.up = function(knex) {
-  knex.schema.createTable('binaryOptions', (table) => {
+  return knex.schema.createTable('binaryOptions', (table) => {
     table.increments('id').primary()
-    t.integer('user_id').references('users.id')
-    table.decimal('targetAmount')
-    table.decimal('rewardPercent')
-    table.decimal('initialAmount')
-    table.decimal('exposedBalance')
-    table.array('history')
-    table.decimal('winRate')
+    table.integer('user_id').references('users.id')
+    table.decimal('target_amount')
+    table.decimal('reward_percent')
+    table.decimal('initial_amount')
+    table.decimal('exposed_balance')
+    table.specificType('decarray', 'history')
+    table.decimal('win_rate')
   })
 };
 
 exports.down = function(knex) {
-  knex.schema.dropTable('binaryOptions')
+ return knex.schema.dropTable('binaryOptions')
 };

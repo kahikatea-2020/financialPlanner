@@ -9,7 +9,7 @@ module.exports = {
 }
 
 function createOption(option, db = connection) {
-  db('binaryOptions').insert(snakeCaseKeys(option))
+  return db('binaryOptions').insert(snakeCaseKeys(option))
     .catch((err) => {
       // eslint-disable-next-line no-console
       console.error(err)
@@ -17,7 +17,7 @@ function createOption(option, db = connection) {
 }
 
 function getUserOptions(user_id, db = connection) {
-  db('binaryOptions')
+  return db('binaryOptions')
     .select()
     .where('user_id', user_id)
     .catch((err) => {
@@ -27,7 +27,7 @@ function getUserOptions(user_id, db = connection) {
 }
 
 function updateUserOption(optionId, option, db = connection) {
-  db('binaryOptions')
+  return db('binaryOptions')
     .where('id', optionId)
     .update(snakeCaseKeys(option))
     .then(() => db('expense').where('id', expenseId).select().first())
@@ -38,7 +38,7 @@ function updateUserOption(optionId, option, db = connection) {
 }
 
 function deleteUserOption(optionId, db = connection) {
-  db('binaryOptions')
+  return db('binaryOptions')
     .where('id', optionId)
     .delete()
     .catch((err) => {
