@@ -1,4 +1,5 @@
 const connection = require('./connection')
+const snakeCaseKeys = require('snakecase-keys')
 
 module.exports = {
   createOption,
@@ -7,16 +8,7 @@ module.exports = {
 }
 
 function createOption (option, db = connection) {
-  db('binaryOptions').insert({
-    id: option.id,
-    user_id: option.userId,
-    target_amount: option.targetAmount,
-    reward_percent: option.rewardPercent,
-    initial_amount: option.initialAmount,
-    exposed_balance: option.exposedBalance,
-    history: option.history,
-    win_rate: option.winRate
-  })
+  db('binaryOptions').insert(snakeCaseKeys(option))
 }
 
 function getUserOptions (user_id, db = connection) {
@@ -25,16 +17,13 @@ function getUserOptions (user_id, db = connection) {
     .where('user_id',user_id)
 }
 
-function updateUserOption (option , db = connection) {
+function updateUserOption (optionId, option , db = connection) {
   db('binaryOptions')
-    .update({
-      id: option.id,
-    user_id: option.userId,
-    target_amount: option.targetAmount,
-    reward_percent: option.rewardPercent,
-    initial_amount: option.initialAmount,
-    exposed_balance: option.exposedBalance,
-    history: option.history,
-    win_rate: option.winRate
-    })
+  .where('id', optionId)
+  .update(snakeCaseKeys(option))
+  .then(() => db('expense').where('id', expenseId).select().first())
+  .catch((err) => {
+    // eslint-disable-next-line no-console
+    console.error(err)
+  })
 }
