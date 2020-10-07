@@ -2,14 +2,19 @@ import React, { Component } from 'react'
 import Calculator from './Calculator'
 import './binaryOptions.css'
 import { Button, Container } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import { getUserOptions } from '../store/actions/binaryOptions'
 class BinaryOptions extends Component {
   state = {
     calculatorToggle: false,
   }
   componentDidMount = () => {
-    
+    console.log(this.props.options)
+    this.props.getUserOptions(this.props.id)
   }
+ 
   render() {
+    console.log(this.props.options);
     return (
       <>
         <div className="binaryOptionsHeader">
@@ -26,6 +31,11 @@ class BinaryOptions extends Component {
           <Button className="binaryButtons" variant="outline-dark">Delete Option</Button>
           <div>
             <h1>Your Binary Options</h1>
+            {this.props.options.length > 0 && this.props.options[0].map(option => {
+              return <div>
+                {option.targetAmount}
+              </div>
+            })}
           </div>
         </Container>
 
@@ -35,5 +45,15 @@ class BinaryOptions extends Component {
     )
   }
 }
+const mapStateToProps = (state) => {
+  console.log(state.binaryOptions.all);
+  return ({
+  id: state.auth.user.id,
+  options: state.binaryOptions.all
+  })
+}
+const mapDispatchToProps = {
+  getUserOptions
+}
 
-export default BinaryOptions
+export default connect(mapStateToProps, mapDispatchToProps)(BinaryOptions)
