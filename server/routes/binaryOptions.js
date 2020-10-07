@@ -35,3 +35,10 @@ router.put('/:optionId', (req, res) => {
       res.status(500).json('DATABASE ERROR: ' + err.message)
     })
 })
+
+router.delete('/:optionId', (req, res) => {
+  return db.deleteUserOption(req.params.optionId)
+    .catch((err) => {
+      res.status(500).json('DATABASE ERROR: ' + err.message)
+    })
+})

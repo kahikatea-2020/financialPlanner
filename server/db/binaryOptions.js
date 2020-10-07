@@ -43,7 +43,9 @@ function updateUserOption(optionId, option, db = connection) {
     })
 }
 
-function deleteUserOption(optionId, db = connection) {
+ function deleteUserOption(optionId, db = connection) {
+
+  // get the user_Id from the option
   return db('binaryOptions')
     .where('id', optionId)
     .delete()
