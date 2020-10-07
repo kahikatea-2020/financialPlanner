@@ -10,6 +10,12 @@ module.exports = {
 
 function createOption(option, db = connection) {
   return db('binaryOptions').insert(snakeCaseKeys(option))
+    .then(([id]) =>
+      db('binayOptions')
+        .where('id', id)
+        .select()
+        .first()
+    )
     .catch((err) => {
       // eslint-disable-next-line no-console
       console.error(err)
