@@ -36,7 +36,7 @@ function updateUserOption(optionId, option, db = connection) {
   return db('binaryOptions')
     .where('id', optionId)
     .update(snakeCaseKeys(option))
-    .then(() => db('expense').where('id', expenseId).select().first())
+    .then(() => db('binaryOptions').where('id', optionId).select().first())
     .catch((err) => {
       // eslint-disable-next-line no-console
       console.error(err)

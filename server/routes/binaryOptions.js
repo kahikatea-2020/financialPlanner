@@ -24,3 +24,14 @@ router.post('/', (req, res) => {
       res.status(500).json('DATABASE ERROR: ' + err.message)
     })
 })
+
+// PUT api/v1/binaryOptions/:optionId
+router.put('/:optionId', (req, res) => {
+  return db.updateUserOption(req.params.optionId, req.body)
+    .then(option => {
+      res.json(camelcaseKeys(option))
+    })
+    .catch((err) => {
+      res.status(500).json('DATABASE ERROR: ' + err.message)
+    })
+})
