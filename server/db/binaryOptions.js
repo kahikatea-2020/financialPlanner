@@ -11,7 +11,7 @@ module.exports = {
 function createOption(option, db = connection) {
   return db('binaryOptions').insert(snakeCaseKeys(option))
     .then(([id]) =>
-      db('binayOptions')
+      db('binaryOptions')
         .where('id', id)
         .select()
         .first()
