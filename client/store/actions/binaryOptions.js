@@ -16,7 +16,7 @@ export const addUserOptions = option => async dispatch => {
   try{
     const optionData = await api.post('/binaryOptions/', option)
     dispatch({
-      type:'ADD_USER_OPTIONS',
+      type:'ADD_USER_OPTION',
       payload: optionData.data
     })
   } catch (err) {

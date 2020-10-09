@@ -8,6 +8,8 @@ export default (state = INITIAL_STATE, action) => {
 
   switch(type){
     case 'GET_USER_OPTIONS':
+        return {...state, all: payload}
+    case 'ADD_USER_OPTION':
         return {...state, all: [...state.all, payload]}
     default:
       return state

@@ -46,7 +46,7 @@ class BinaryOptions extends Component {
 
           <div>
             <h1>Your Binary Options</h1>
-            {this.props.options.length > 0 && this.props.options[0].map(option => {
+            {this.props.options && this.props.options.map(option => {
               return <div>
                 {option.targetAmount}
               </div>
