@@ -23,3 +23,14 @@ export const addUserOptions = option => async dispatch => {
     console.log('error is addUserOptions API call')
   }
 }
+
+export const addOptionModal = (bool) => async dispatch => {
+  try{
+    dispatch({
+      type:'TOGGLE_ADD_OPTION_MODAL',
+      payload: bool
+    })
+  } catch (err) {
+    console.log('error is addOptionModal action')
+  }
+}

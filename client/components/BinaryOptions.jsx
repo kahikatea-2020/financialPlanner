@@ -6,7 +6,7 @@ import AddOptionModal from './AddOptionModal'
 import './binaryOptions.css'
 import { Button, Container } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { getUserOptions } from '../store/actions/binaryOptions'
+import { getUserOptions, addOptionModal } from '../store/actions/binaryOptions'
 
 class BinaryOptions extends Component {
   state = {
@@ -16,7 +16,6 @@ class BinaryOptions extends Component {
     console.log(this.props.options)
     this.props.getUserOptions(this.props.id)
   }
- 
   render() {
     console.log(this.props.options);
     return (
@@ -25,7 +24,7 @@ class BinaryOptions extends Component {
           <h2>Manage Your Binary Options Trading</h2>
         </div>
         {this.state.calculatorToggle && <Calculator />}
-        {this.state.addOptionModal && <AddOptionModal />}
+        {this.props.addOptionModalState && <AddOptionModal />}
         <Container style={{marginTop:'20px'}}>
 
           {!this.state.calculatorToggle? 
@@ -40,7 +39,7 @@ class BinaryOptions extends Component {
             this.setState({calculatorToggle: false})
           }} variant="outline-danger">Close Calculator</Button> }
 
-          <Button className="binaryButtons" variant="outline-dark" onClick = {() => this.setState({AddOptionModal: true})}>Add Option</Button>
+          <Button className="binaryButtons" variant="outline-dark" onClick = {() => this.props.addOptionModal(true)}>Add Option</Button>
           <Button className="binaryButtons" variant="outline-dark">Edit Option</Button>
           <Button className="binaryButtons" variant="outline-dark">Delete Option</Button>
 
@@ -61,14 +60,16 @@ class BinaryOptions extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  console.log(state.binaryOptions.all);
+  console.log(state);
   return ({
   id: state.auth.user.id,
-  options: state.binaryOptions.all
+  options: state.binaryOptions.all,
+  addOptionModalState: state.binaryOptions.open
   })
 }
 const mapDispatchToProps = {
-  getUserOptions
+  getUserOptions,
+  addOptionModal
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BinaryOptions)

@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
   all: [],
-  selected: null
+  selected: null,
+  open: false
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -11,6 +12,8 @@ export default (state = INITIAL_STATE, action) => {
         return {...state, all: payload}
     case 'ADD_USER_OPTION':
         return {...state, all: [...state.all, payload]}
+    case 'TOGGLE_ADD_OPTION_MODAL':
+        return {...state, open: payload}
     default:
       return state
   }
