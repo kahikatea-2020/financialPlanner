@@ -16,6 +16,8 @@ export default (state = INITIAL_STATE, action) => {
         return {...state, open: payload}
     case 'SET_SELECTED_OPTION':
         return {...state, selected: payload}
+    case 'DELETE_USER_OPTION':
+        return {...state, all: state.all.filter(option => option.id !== payload) }
     default:
       return state
   }
