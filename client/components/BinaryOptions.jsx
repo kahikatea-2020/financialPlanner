@@ -6,10 +6,12 @@ import AddOptionModal from './AddOptionModal'
 import './binaryOptions.css'
 import { Button, Container } from 'react-bootstrap'
 import { connect } from 'react-redux'
+
 import {
   getUserOptions,
   addOptionModal,
-  setSelectedOption
+  setSelectedOption,
+  deleteUserOption
 } from '../store/actions/binaryOptions'
 
 class BinaryOptions extends Component {
@@ -17,11 +19,11 @@ class BinaryOptions extends Component {
     calculatorToggle: false
   }
   componentDidMount = () => {
-    console.log(this.props.options)
+    // console.log(this.props.options)
     this.props.getUserOptions(this.props.id)
   }
   render() {
-    console.log(this.props.options);
+    // console.log(this.props.options);
     return (
       <>
         <div className="binaryOptionsHeader">
@@ -45,7 +47,7 @@ class BinaryOptions extends Component {
 
           <Button className="binaryButtons" variant="outline-dark" onClick={() => this.props.addOptionModal(true)}>Add Option</Button>
           <Button className="binaryButtons" variant="outline-dark">Edit Option</Button>
-          <Button className="binaryButtons" variant="outline-dark">Delete Option</Button>
+          <Button className="binaryButtons" variant="outline-dark" onClick = {() => this.props.deleteUserOption(this.props.selected)}>Delete Option</Button>
 
           <div>
             <h1>Your Binary Options</h1>
@@ -64,7 +66,7 @@ class BinaryOptions extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  console.log(state);
+  // console.log(state);
   return ({
     id: state.auth.user.id,
     options: state.binaryOptions.all,
@@ -75,7 +77,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   getUserOptions,
   addOptionModal,
-  setSelectedOption
+  setSelectedOption,
+  deleteUserOption
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BinaryOptions)

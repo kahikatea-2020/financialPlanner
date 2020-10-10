@@ -47,9 +47,9 @@ export const setSelectedOption = (id) => dispatch => {
   
 }
 
-export const deleteUserOption = id => async dispatch => {
+export const deleteUserOption = id =>  dispatch => {
   try{
-    await api.delete(`/binaryOptions/${id}`)
+    api.delete(`/binaryOptions/${id}`)
     dispatch({
       type:'DELETE_USER_OPTION',
       payload: id
