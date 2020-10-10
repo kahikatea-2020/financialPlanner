@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { addOptionModal } from '../store/actions/binaryOptions'
+import { addOptionModal, addUserOptions } from '../store/actions/binaryOptions'
 import { connect } from 'react-redux'
 import './addOptionModal.css'
 import { Button } from 'react-bootstrap'
@@ -40,9 +40,16 @@ class AddOptionModal extends Component {
             <div className="inputContainer">
               <input name="exposedBalance" type="number" placeholder="exposed balance" onChange={(evt) => this.handleInput(evt.target.name, evt.target.value)}/>
             </div>
-
           </div>
-          <Button className="modalButton" variant="dark" onClick={() => this.props.addOptionModal(false)}>Add Binary Option</Button>
+          <Button className="modalButton" variant="dark" onClick={() => {
+
+
+            this.props.addOptionModal(false)
+            this.props.addUserOptions({
+              ...this.state, userId: this.props.userId
+            })
+            
+            }}>Add Binary Option</Button>
           <Button className="modalButton" variant="danger" onClick={() => this.props.addOptionModal(false)}>Cancel</Button>
         </div>
       </div>
@@ -52,11 +59,13 @@ class AddOptionModal extends Component {
 
 const mapStateToProps = state => {
   return {
-    addOptionModal: state.binaryOptions.open
+    addOptionModal: state.binaryOptions.open,
+    userId: state.auth.user.id
   }
 }
 const mapDispatchToProps = {
-  addOptionModal
+  addOptionModal,
+  addUserOptions
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddOptionModal)
