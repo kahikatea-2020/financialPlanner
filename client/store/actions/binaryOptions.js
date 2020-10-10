@@ -42,7 +42,19 @@ export const setSelectedOption = (id) => dispatch => {
       payload: id
     })
   } catch (err) {
-    console.log('error is addOptionModal action')
+    console.log('error is setSelectedOption action')
   }
   
+}
+
+export const deleteUserOption = id => async dispatch => {
+  try{
+    await api.delete(`/binaryOptions/${id}`)
+    dispatch({
+      type:'DELETE_USER_OPTION',
+      payload: id
+    })
+  } catch (err) {
+    console.log('error is deleteUserOption API call')
+  }
 }
