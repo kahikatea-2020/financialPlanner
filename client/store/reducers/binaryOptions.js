@@ -14,6 +14,8 @@ export default (state = INITIAL_STATE, action) => {
         return {...state, all: [...state.all, payload]}
     case 'TOGGLE_ADD_OPTION_MODAL':
         return {...state, open: payload}
+    case 'SET_SELECTED_OPTION':
+        return {...state, selected: payload}
     default:
       return state
   }
