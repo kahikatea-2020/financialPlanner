@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import Calculator from './Calculator'
 import AddOptionModal from './AddOptionModal'
+import EditOptionModal from './EditOptionModal'
 
 import './binaryOptions.css'
 import { Button, Container } from 'react-bootstrap'
@@ -11,7 +12,8 @@ import {
   getUserOptions,
   addOptionModal,
   setSelectedOption,
-  deleteUserOption
+  deleteUserOption,
+  editOptionModal
 } from '../store/actions/binaryOptions'
 
 class BinaryOptions extends Component {
@@ -31,6 +33,8 @@ class BinaryOptions extends Component {
         </div>
         {this.state.calculatorToggle && <Calculator />}
         {this.props.addOptionModalState && <AddOptionModal />}
+        {this.props.editOptionModalState && <EditOptionModal />}
+
         <Container style={{ marginTop: '20px' }}>
 
           {!this.state.calculatorToggle ?
@@ -46,13 +50,13 @@ class BinaryOptions extends Component {
             }} variant="outline-danger">Close Calculator</Button>}
 
           <Button className="binaryButtons" variant="outline-dark" onClick={() => this.props.addOptionModal(true)}>Add Option</Button>
-          <Button className="binaryButtons" variant="outline-dark">Edit Option</Button>
+          <Button className="binaryButtons" variant="outline-dark" onClick= {() => this.props.editOptionModal(true)}>Edit Option</Button>
           <Button className="binaryButtons" variant="outline-dark" onClick = {() => this.props.deleteUserOption(this.props.selected)}>Delete Option</Button>
 
           <div>
             <h1>Your Binary Options</h1>
             {this.props.options && this.props.options.map(option => {
-              return <div className={`${this.props.selected === option.id ? 'selected' : ''}`} onClick={() => this.props.setSelectedOption(option.id)}>
+              return <div className={`${ this.props.selected && this.props.selected.id === option.id ? 'selected' : ''}`} onClick={() => this.props.setSelectedOption(option)}>
                 {option.targetAmount}
               </div>
             })}
@@ -66,11 +70,12 @@ class BinaryOptions extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  // console.log(state);
+  console.log(state);
   return ({
     id: state.auth.user.id,
     options: state.binaryOptions.all,
     addOptionModalState: state.binaryOptions.open,
+    editOptionModalState: state.binaryOptions.editOpen,
     selected: state.binaryOptions.selected
   })
 }
@@ -78,7 +83,8 @@ const mapDispatchToProps = {
   getUserOptions,
   addOptionModal,
   setSelectedOption,
-  deleteUserOption
+  deleteUserOption,
+  editOptionModal
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BinaryOptions)

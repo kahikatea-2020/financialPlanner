@@ -49,7 +49,7 @@ class EditOptionModal extends Component {
               ...this.state, userId: this.props.userId
             })
             
-            }}>Add Binary Option</Button>
+            }}>Finish Editing</Button>
           <Button className="modalButton" variant="danger" onClick={() => this.props.editOptionModal(false)}>Cancel</Button>
         </div>
       </div>

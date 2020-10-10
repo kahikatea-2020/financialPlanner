@@ -1,7 +1,8 @@
 const INITIAL_STATE = {
   all: [],
   selected: null,
-  open: false
+  open: false,
+  editOpen: false
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -29,7 +30,7 @@ export default (state = INITIAL_STATE, action) => {
           }
         })}
     case 'TOGGLE_EDIT_OPTION_MODAL':
-        return {...state, open: payload}
+        return {...state, editOpen: payload}
     default:
       return state
   }

@@ -35,11 +35,11 @@ export const addOptionModal = (bool) => dispatch => {
   }
 }
 
-export const setSelectedOption = (id) => dispatch => {
+export const setSelectedOption = (option) => dispatch => {
   try {
     dispatch({
       type: 'SET_SELECTED_OPTION',
-      payload: id
+      payload: option
     })
   } catch (err) {
     console.log('error is setSelectedOption action')
