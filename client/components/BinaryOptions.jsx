@@ -50,8 +50,8 @@ class BinaryOptions extends Component {
             }} variant="outline-danger">Close Calculator</Button>}
 
           <Button className="binaryButtons" variant="outline-dark" onClick={() => this.props.addOptionModal(true)}>Add Option</Button>
-          <Button className="binaryButtons" variant="outline-dark" onClick= {() => this.props.editOptionModal(true)}>Edit Option</Button>
-          <Button className="binaryButtons" variant="outline-dark" onClick = {() => this.props.deleteUserOption(this.props.selected)}>Delete Option</Button>
+          <Button className="binaryButtons" variant="outline-dark" onClick= {() => this.props.selected && this.props.editOptionModal(true)}>Edit Option</Button>
+          <Button className="binaryButtons" variant="outline-dark" onClick = {() => this.props.deleteUserOption(this.props.selected.id)}>Delete Option</Button>
 
           <div>
             <h1>Your Binary Options</h1>

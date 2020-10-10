@@ -60,6 +60,8 @@ export const deleteUserOption = id => dispatch => {
 }
 
 export const editUserOption = option => async dispatch => {
+
+  console.log(option);
   try {
     api.put(`/binaryOptions/${option.id}`, option)
     dispatch({
