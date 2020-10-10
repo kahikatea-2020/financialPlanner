@@ -4,7 +4,7 @@ export const getUserOptions = userId => async dispatch => {
   try {
     const options = await api.get(`/binaryOptions/${userId}`)
     dispatch({
-      type:'GET_USER_OPTIONS',
+      type: 'GET_USER_OPTIONS',
       payload: options.data
     })
   } catch (err) {
@@ -13,10 +13,10 @@ export const getUserOptions = userId => async dispatch => {
 }
 
 export const addUserOptions = option => async dispatch => {
-  try{
+  try {
     const optionData = await api.post('/binaryOptions/', option)
     dispatch({
-      type:'ADD_USER_OPTION',
+      type: 'ADD_USER_OPTION',
       payload: optionData.data
     })
   } catch (err) {
@@ -25,9 +25,9 @@ export const addUserOptions = option => async dispatch => {
 }
 
 export const addOptionModal = (bool) => dispatch => {
-  try{
+  try {
     dispatch({
-      type:'TOGGLE_ADD_OPTION_MODAL',
+      type: 'TOGGLE_ADD_OPTION_MODAL',
       payload: bool
     })
   } catch (err) {
@@ -36,25 +36,37 @@ export const addOptionModal = (bool) => dispatch => {
 }
 
 export const setSelectedOption = (id) => dispatch => {
-  try{
+  try {
     dispatch({
-      type:'SET_SELECTED_OPTION',
+      type: 'SET_SELECTED_OPTION',
       payload: id
     })
   } catch (err) {
     console.log('error is setSelectedOption action')
   }
-  
+
 }
 
-export const deleteUserOption = id =>  dispatch => {
-  try{
+export const deleteUserOption = id => dispatch => {
+  try {
     api.delete(`/binaryOptions/${id}`)
     dispatch({
-      type:'DELETE_USER_OPTION',
+      type: 'DELETE_USER_OPTION',
       payload: id
     })
   } catch (err) {
     console.log('error is deleteUserOption API call')
+  }
+}
+
+export const editUserOption = option => async dispatch => {
+  try {
+    api.put(`/binaryOptions/${option.id}`, option)
+    dispatch({
+      type: 'UPDATE_USER_OPTION',
+      payload: option
+    })
+  } catch (err) {
+    console.log('error is editUserOption API call')
   }
 }
