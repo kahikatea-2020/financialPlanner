@@ -20,6 +20,14 @@ export default (state = INITIAL_STATE, action) => {
         let newArray = state.all.filter(option => option.id !== payload)
         console.log(newArray)
         return {...state, all: newArray }
+    case 'EDIT_USER_OPTION':
+        return {...state, all: state.all.map(option => {
+          if(option.id === payload.id){
+            return payload
+          } else {
+            return option
+          }
+        })}
     default:
       return state
   }

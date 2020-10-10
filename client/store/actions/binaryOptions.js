@@ -63,7 +63,7 @@ export const editUserOption = option => async dispatch => {
   try {
     api.put(`/binaryOptions/${option.id}`, option)
     dispatch({
-      type: 'UPDATE_USER_OPTION',
+      type: 'EDIT_USER_OPTION',
       payload: option
     })
   } catch (err) {
