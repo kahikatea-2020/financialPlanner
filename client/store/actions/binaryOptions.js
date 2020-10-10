@@ -24,7 +24,7 @@ export const addUserOptions = option => async dispatch => {
   }
 }
 
-export const addOptionModal = (bool) => async dispatch => {
+export const addOptionModal = (bool) => dispatch => {
   try{
     dispatch({
       type:'TOGGLE_ADD_OPTION_MODAL',
@@ -33,4 +33,16 @@ export const addOptionModal = (bool) => async dispatch => {
   } catch (err) {
     console.log('error is addOptionModal action')
   }
+}
+
+export const setSelectedOption = (id) => dispatch => {
+  try{
+    dispatch({
+      type:'SET_SELECTED_OPTION',
+      payload: id
+    })
+  } catch (err) {
+    console.log('error is addOptionModal action')
+  }
+  
 }
