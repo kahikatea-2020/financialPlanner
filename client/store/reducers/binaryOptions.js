@@ -28,6 +28,8 @@ export default (state = INITIAL_STATE, action) => {
             return option
           }
         })}
+    case 'TOGGLE_EDIT_OPTION_MODAL':
+        return {...state, open: payload}
     default:
       return state
   }

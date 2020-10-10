@@ -70,3 +70,14 @@ export const editUserOption = option => async dispatch => {
     console.log('error is editUserOption API call')
   }
 }
+
+export const editOptionModal = (bool) => dispatch => {
+  try {
+    dispatch({
+      type: 'TOGGLE_EDIT_OPTION_MODAL',
+      payload: bool
+    })
+  } catch (err) {
+    console.log('error is editOptionModal action')
+  }
+}
