@@ -17,50 +17,7 @@ import {
   deleteUserOption,
   editOptionModal
 } from '../store/actions/binaryOptions'
-const data = [
-  {
-    "name": "Page A",
-    "uv": 4000,
-    "pv": 2400,
-    "amt": 2400
-  },
-  {
-    "name": "Page B",
-    "uv": 3000,
-    "pv": 1398,
-    "amt": 2210
-  },
-  {
-    "name": "Page C",
-    "uv": 2000,
-    "pv": 9800,
-    "amt": 2290
-  },
-  {
-    "name": "Page D",
-    "uv": 2780,
-    "pv": 3908,
-    "amt": 2000
-  },
-  {
-    "name": "Page E",
-    "uv": 1890,
-    "pv": 4800,
-    "amt": 2181
-  },
-  {
-    "name": "Page F",
-    "uv": 2390,
-    "pv": 3800,
-    "amt": 2500
-  },
-  {
-    "name": "Page G",
-    "uv": 3490,
-    "pv": 4300,
-    "amt": 2100
-  }
-]
+
 class BinaryOptions extends Component {
   state = {
     calculatorToggle: false
@@ -71,6 +28,7 @@ class BinaryOptions extends Component {
   }
   render() {
     // console.log(this.props.options);
+    
     return (
       <>
         <div className="binaryOptionsHeader">
@@ -101,6 +59,15 @@ class BinaryOptions extends Component {
           <div>
             <h1>Your Binary Options</h1>
             {this.props.options && this.props.options.map(option => {
+              let history = option.history
+
+              let data = history.map((number,index) => {
+                return {
+                  name: "Trade #" + index.toString(),
+                  value: number
+                }
+              })
+
               return <div className={`binaryOption ${this.props.selected && this.props.selected.id === option.id ? 'selected' : ''}`} onClick={() => this.props.setSelectedOption(option)}>
                 <h4>Target Amount</h4>
                 <p> ${option.targetAmount}</p>
@@ -118,8 +85,8 @@ class BinaryOptions extends Component {
                   <YAxis />
                   <Tooltip />
                   <Legend />
-                  <Line type="monotone" dataKey="pv" stroke="#8884d8" />
-                  <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                  <Line type="monotone" dataKey="value" stroke="#8884d8" />
+               
                 </LineChart>
               </div>
             })}
