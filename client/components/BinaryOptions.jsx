@@ -58,13 +58,13 @@ class BinaryOptions extends Component {
             {this.props.options && this.props.options.map(option => {
               return <div className={`binaryOption ${ this.props.selected && this.props.selected.id === option.id ? 'selected' : ''}`} onClick={() => this.props.setSelectedOption(option)}>
                 <h4>Target Amount</h4>
-                <p>{option.targetAmount}</p>
+                <p> ${option.targetAmount}</p>
                 <h4>Reward Percent</h4>
-                <p>{option.rewardPercent}</p>
+                <p>{option.rewardPercent}%</p>
                 <h4>Initial Amount</h4>
-                <p>{option.initialAmount}</p>
+                <p>${option.initialAmount}</p>
                 <h4>Exposed Balance</h4>
-                <p>{option.exposedBalance}</p>
+                <p>${option.exposedBalance}</p>
               </div>
             })}
           </div>

@@ -13,10 +13,18 @@
 }
 .selected {
   background:white !important;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.418);
+  transition:500ms;
 }
 
 .binaryOption{
   padding:30px;
   background:rgba(255, 255, 255, 0.5);
   margin-bottom:50px;
+  transition:500ms;
+}
+
+.binaryOption:hover{
+  background: rgba(241, 220, 255, 0.5);
+  transition:500ms;
 }
