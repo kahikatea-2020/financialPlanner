@@ -56,8 +56,15 @@ class BinaryOptions extends Component {
           <div>
             <h1>Your Binary Options</h1>
             {this.props.options && this.props.options.map(option => {
-              return <div className={`${ this.props.selected && this.props.selected.id === option.id ? 'selected' : ''}`} onClick={() => this.props.setSelectedOption(option)}>
-                {option.targetAmount}
+              return <div className={`binaryOption ${ this.props.selected && this.props.selected.id === option.id ? 'selected' : ''}`} onClick={() => this.props.setSelectedOption(option)}>
+                <h4>Target Amount</h4>
+                <p>{option.targetAmount}</p>
+                <h4>Reward Percent</h4>
+                <p>{option.rewardPercent}</p>
+                <h4>Initial Amount</h4>
+                <p>{option.initialAmount}</p>
+                <h4>Exposed Balance</h4>
+                <p>{option.exposedBalance}</p>
               </div>
             })}
           </div>
@@ -70,7 +77,7 @@ class BinaryOptions extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  console.log(state);
+  // console.log(state);
   return ({
     id: state.auth.user.id,
     options: state.binaryOptions.all,
