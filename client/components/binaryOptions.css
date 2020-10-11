@@ -28,3 +28,15 @@
   background: rgba(241, 220, 255, 0.5);
   transition:500ms;
 }
+
+.binaryButtonsContainer{
+  position:sticky;
+  top:0px;
+  padding:20px;
+  background:white;
+  z-index:2;
+  margin-bottom:50px;
+  display:flex;
+  align-items:center;
+  justify-content: center;
+}

@@ -7,6 +7,7 @@ exports.up = function(knex) {
     table.decimal('reward_percent')
     table.decimal('initial_amount')
     table.decimal('exposed_balance')
+    table.decimal('current_amount')
     table.string('history')
     table.decimal('win_rate')
   })
