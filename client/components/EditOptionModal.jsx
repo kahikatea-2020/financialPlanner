@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { editOptionModal, editUserOption } from '../store/actions/binaryOptions'
+import { editOptionModal, editUserOption, setSelectedOption } from '../store/actions/binaryOptions'
 import { connect } from 'react-redux'
 import './addOptionModal.css'
 import { Button } from 'react-bootstrap'
@@ -7,10 +7,10 @@ class EditOptionModal extends Component {
 
   state = {
     object: {
-      targetAmount: 0,
-      rewardPercent: 0,
-      initialAmount: 0,
-      exposedBalance: 0
+      targetAmount: "0",
+      rewardPercent: "0",
+      initialAmount: "0",
+      exposedBalance: "0"
     } ,
     error: false
   }
@@ -41,16 +41,20 @@ class EditOptionModal extends Component {
           </div>
           <div>
             <div className="inputContainer">
-              <input value={this.state.object.targetAmount} name="targetAmount" type="number" placeholder={`target amount: ${this.state.object.targetAmount}`} onChange={(evt) => this.handleInput(evt.target.name, evt.target.value)}/>
+              <h4>Target amount ($)</h4>
+              <input value={this.state.object.targetAmount} name="targetAmount" type="number" onChange={(evt) => this.handleInput(evt.target.name, evt.target.value)}/>
             </div>
             <div className="inputContainer">
-              <input  name="rewardPercent" type="number" placeholder="reward percent" onChange={(evt) => this.handleInput(evt.target.name, evt.target.value)}/>
+              <h4>Reward Percent (%)</h4>
+              <input  value={this.state.object.rewardPercent} name="rewardPercent" type="number" placeholder="reward percent" onChange={(evt) => this.handleInput(evt.target.name, evt.target.value)}/>
             </div>
             <div className="inputContainer">
-              <input  name="initialAmount" type="number" placeholder="initial amount" onChange={(evt) => this.handleInput(evt.target.name, evt.target.value)} />
+              <h4>Initial Amount ($)</h4>
+              <input  value={this.state.object.initialAmount} name="initialAmount" type="number" placeholder="initial amount" onChange={(evt) => this.handleInput(evt.target.name, evt.target.value)} />
             </div>
             <div className="inputContainer">
-              <input  name="exposedBalance" type="number" placeholder="exposed balance" onChange={(evt) => this.handleInput(evt.target.name, evt.target.value)}/>
+              <h4>Exposed Balance ($)</h4>
+              <input  value={this.state.object.exposedBalance} name="exposedBalance" type="number" placeholder="exposed balance" onChange={(evt) => this.handleInput(evt.target.name, evt.target.value)}/>
             </div>
           </div>
           {this.state.error && <p>You must fill in all the fields before updating the option.</p>}
@@ -62,7 +66,7 @@ class EditOptionModal extends Component {
             console.log(values);
             // if user has not set a field don't update the option
             for(let i = 0; i < values.length; i++){
-              if(values[i] === 0){
+              if(values[i] === "0" || values[i] === "" ){
                 this.setState({error: true})
                 return
               }
@@ -72,7 +76,7 @@ class EditOptionModal extends Component {
               ...this.state.object, userId: this.props.userId, id: this.props.selected.id
             })
             this.props.editOptionModal(false)
-            
+            this.props.setSelectedOption({...this.state.object, id: this.props.selected.id, userId: this.props.userId})
             }}>Finish Editing</Button>
           <Button className="modalButton" variant="danger" onClick={() => this.props.editOptionModal(false)}>Cancel</Button>
         </div>
@@ -90,7 +94,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = {
   editOptionModal,
-  editUserOption
+  editUserOption,
+  setSelectedOption
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditOptionModal)
