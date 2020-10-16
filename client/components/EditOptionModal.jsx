@@ -68,7 +68,7 @@ class EditOptionModal extends Component {
       
             // if user has not set a field don't update the option
             for(let i = 0; i < values.length; i++){
-              if(values[i] === "0" || values[i] === "" ){
+              if(values[i] === "0" || values[i] === "" || values[i] === 0){
                 this.setState({error: true})
                 return
               }
