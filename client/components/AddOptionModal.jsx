@@ -58,7 +58,7 @@ class AddOptionModal extends Component {
             }
             this.props.addOptionModal(false)
             this.props.addUserOptions({
-              ...this.state.object, userId: this.props.userId, currentAmount: this.state.object.initialAmount, history: [Number(this.state.initialAmount)]
+              ...this.state.object, userId: this.props.userId, currentAmount: this.state.object.initialAmount, history: [Number(this.state.object.initialAmount)]
             })
 
           }}>Add Binary Option</Button>
