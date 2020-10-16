@@ -20,9 +20,15 @@ const authenticate = async (data, db = connection) => {
 const newUser = async (data, db = connection) => {
   const { password, confirmPassword, email, fullName } = data
   try {
+    
     if (password !== confirmPassword) return 'Password does not match'
+    if(email === undefined) return 'You must enter an email'
+    if(fullName === undefined ) return 'You must enter your full name'
+    if(password === undefined) return 'You must enter a password'
+    if(confirmPassword === undefined) return 'You must confirm your password'
+
     const hashPassword = await bcrypt.hash(password, 10)
-    const [ id ] = await db('users').insert({
+    const [id] = await db('users').insert({
       email,
       password: hashPassword
     })
@@ -32,7 +38,14 @@ const newUser = async (data, db = connection) => {
     })
     return { id, email, fullName }
   } catch (err) {
-    return err.stack
+    console.log(typeof err.message);
+    if (err.message.includes('insert into `users` (`email`, `password`)')) {
+      return "Email is already in use"
+    } else {
+      return err.message
+    }
+
+
   }
 }
 

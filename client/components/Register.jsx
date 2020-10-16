@@ -1,44 +1,62 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { newUser } from '../store/actions/auth'
-
+import { Button } from 'react-bootstrap'
+import './register.css'
 class Register extends Component {
   state = {
-    email: '',
-    fullName: '',
-    password: '',
-    confirmPassword: '',
+    email: undefined,
+    fullName: undefined,
+    password: undefined,
+    confirmPassword: undefined,
     err: null
   }
   render() {
     return (
-      <div>
-        <input type="email" placeHolder="email" onChange={(evt) => this.setState({ email: evt.target.value })} />
-        <input type="text" placeHolder="full name" onChange={(evt) => this.setState({ fullName: evt.target.value })} />
-        <input type="password" placeHolder="password" onChange={(evt) => this.setState({ password: evt.target.value })} />
-        <input type="password" placeHolder="confirm password" onChange={(evt) => this.setState({ confirmPassword: evt.target.value })} />
-        <button onClick={async () => {
+      <div className="registerContainer">
+        <div>
+          <form action="">
+            <h1>Sign Up</h1>
+            <hr/>
+            
+            <div className="inputContainer">
+              <h4>Email</h4>
+              <input type="email" placeholder="email" onChange={(evt) => this.setState({ email: evt.target.value })} />
+            </div>
+            <div className="inputContainer">
+              <h4>Full Name</h4>
+              <input type="text" placeholder="full name" onChange={(evt) => this.setState({ fullName: evt.target.value })} />
+            </div>
+            <div className="inputContainer">
+              <h4>Password</h4>
+              <input type="password" placeholder="password" onChange={(evt) => this.setState({ password: evt.target.value })} />
+            </div>
+            <div className="inputContainer">
+              <h4>Confirm Password</h4>
+              <input type="password" placeholder="confirm password" onChange={(evt) => this.setState({ confirmPassword: evt.target.value })} />
+            </div>
 
-          try {
-            await this.props.newUser({
-              email: this.state.email,
-              fullName: this.state.fullName,
-              password: this.state.password,
-              confirmPassword: this.state.confirmPassword
-            }) 
+            <Button variant = "dark" onClick={async () => {
 
-            location.replace('/#/profile')
+              try {
+                await this.props.newUser({
+                  email: this.state.email,
+                  fullName: this.state.fullName,
+                  password: this.state.password,
+                  confirmPassword: this.state.confirmPassword
+                })
 
-          } catch (err) {
-            this.setState({ err: err.message })
-          }
+                location.replace('/#/profile')
 
+              } catch (err) {
+                this.setState({ err: err.message })
+              }
+            }}>Sign Up</Button>
+          </form>
 
+          <p>{this.state.err}</p>
+        </div>
 
-
-
-        }}>Sign Up</button>
-        <p>{this.state.err}</p>
       </div>
     )
   }

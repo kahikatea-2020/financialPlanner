@@ -5,7 +5,7 @@ import { Container, Carousel, Row, Col } from 'react-bootstrap'
 class Home extends Component {
   render() {
     return <>
-      <Carousel className="homeCarousel" interval='5000'>
+      <Carousel className="homeCarousel" interval={5000}>
         <Carousel.Item>
 
 
@@ -34,15 +34,15 @@ class Home extends Component {
         <h1>Why Us?</h1>
         <Row>
           <Col className="columnHome" lg={4}>
-            <i class="fab fa-react"></i>
+            <i className="fab fa-react"></i>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure voluptate vero, odit consequuntur quod illo ut quidem qui ex vel! Necessitatibus, nemo autem. Perspiciatis fugiat provident id tenetur modi eos sit delectus, est maxime, odit reiciendis laudantium magni officia blanditiis placeat commodi voluptatem vitae architecto rerum itaque </p>
           </Col>
           <Col className="columnHome" lg={4}>
-            <i class="fab fa-react"></i>
+            <i className="fab fa-react"></i>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure voluptate vero, odit consequuntur quod illo ut quidem qui ex vel! Necessitatibus, nemo autem. Perspiciatis fugiat provident id tenetur modi eos sit delectus, est maxime, odit reiciendis laudantium magni officia blanditiis placeat commodi voluptatem vitae architecto rerum itaque </p>
           </Col>
           <Col className="columnHome" lg={4}>
-            <i class="fab fa-react"></i>
+            <i className="fab fa-react"></i>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure voluptate vero, odit consequuntur quod illo ut quidem qui ex vel! Necessitatibus, nemo autem. Perspiciatis fugiat provident id tenetur modi eos sit delectus, est maxime, odit reiciendis laudantium magni officia blanditiis placeat commodi voluptatem vitae architecto rerum itaque </p>
           </Col>
         </Row>
