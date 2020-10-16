@@ -7,16 +7,18 @@ class EditOptionModal extends Component {
 
   state = {
     object: {
-      targetAmount: "0",
-      rewardPercent: "0",
-      initialAmount: "0",
-      exposedBalance: "0"
+      targetAmount: 0,
+      rewardPercent: 0,
+      initialAmount: 0,
+      exposedBalance: 0,
+      history: [],
+      currentAmount: 0,
     } ,
     error: false
   }
 
   handleInput = (name, value) => {
-    this.setState({ object: { ...this.state.object, [name]: value }}, () => {
+    this.setState({ object: { ...this.state.object, [name]: Number(value) }}, () => {
       console.log(this.state);
     })
   }
@@ -26,7 +28,9 @@ class EditOptionModal extends Component {
         targetAmount: this.props.selected.targetAmount,
         rewardPercent: this.props.selected.rewardPercent,
         initialAmount: this.props.selected.initialAmount,
-        exposedBalance: this.props.selected.exposedBalance
+        exposedBalance: this.props.selected.exposedBalance,
+        history: this.props.selected.history,
+        currentAmount: this.props.selected.currentAmount
       }
     })
   }

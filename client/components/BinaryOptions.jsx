@@ -15,7 +15,8 @@ import {
   addOptionModal,
   setSelectedOption,
   deleteUserOption,
-  editOptionModal
+  editOptionModal,
+  editUserOption
 } from '../store/actions/binaryOptions'
 
 class BinaryOptions extends Component {
@@ -28,9 +29,23 @@ class BinaryOptions extends Component {
   }
 
   simulateWin = (option) => {
+    //add rewardPercent*exposedBalance to current amount
+    
+    // add new trade to array
+
+    // update database and redux store
   }
 
   simulateLoss = (option) => {
+    //subtract exposed balance from current amount
+    let newOption = option
+    console.log(newOption);
+    newOption.currentAmount = Number(newOption.currentAmount) - Number(newOption.exposedBalance)
+    console.log(newOption.currentAmount);
+    // add new trade to array
+    newOption.history.push(newOption.currentAmount)
+    // update database and redux store
+    this.props.editUserOption(newOption)
   }
 
   render() {
@@ -73,7 +88,7 @@ class BinaryOptions extends Component {
             {this.props.options && this.props.options.map(option => {
               let history = option.history
 
-              let data = history.map((number, index) => {
+              let data = history && history.map((number, index) => {
                 return {
                   name: "Trade #" + index.toString(),
                   value: number
@@ -91,8 +106,8 @@ class BinaryOptions extends Component {
                 <p>${option.exposedBalance}</p>
                 <h4>Current Balance</h4>
                 <p>${option.currentAmount}</p>
-                <Button style={{ marginRight: "5px", marginBottom: "20px"}} variant="success">Simulate Win</Button>
-                <Button style={{ marginRight: "5px", marginBottom: "20px"}} variant="danger">Simulate Loss</Button>
+                <Button onClick = {() => this.simulateWin(option)} style={{ marginRight: "5px", marginBottom: "20px"}} variant="success">Simulate Win</Button>
+                <Button onClick = {() => this.simulateLoss(option)} style={{ marginRight: "5px", marginBottom: "20px"}} variant="danger">Simulate Loss</Button>
                 <LineChart width={1000} height={250} data={data}
                   margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -129,7 +144,8 @@ const mapDispatchToProps = {
   addOptionModal,
   setSelectedOption,
   deleteUserOption,
-  editOptionModal
+  editOptionModal,
+  editUserOption
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BinaryOptions)
