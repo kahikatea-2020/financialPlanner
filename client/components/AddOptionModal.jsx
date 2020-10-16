@@ -9,7 +9,9 @@ class AddOptionModal extends Component {
     targetAmount: 0,
     rewardPercent: 0,
     initialAmount: 0,
-    exposedBalance: 0
+    exposedBalance: 0,
+    currentAmount: 0,
+    history: []
   }
 
   handleInput = (name, value) => {
@@ -46,7 +48,7 @@ class AddOptionModal extends Component {
 
             this.props.addOptionModal(false)
             this.props.addUserOptions({
-              ...this.state, userId: this.props.userId
+              ...this.state, userId: this.props.userId, currentAmount: this.state.initialAmount, history: [Number(this.state.initialAmount)]
             })
             
             }}>Add Binary Option</Button>

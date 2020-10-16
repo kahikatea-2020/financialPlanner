@@ -7,7 +7,7 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   const {type, payload = null} = action
-
+  console.log(payload);
   switch(type){
     case 'GET_USER_OPTIONS':
         return {...state, all: payload}

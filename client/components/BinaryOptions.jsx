@@ -88,10 +88,16 @@ class BinaryOptions extends Component {
           <div>
             <h1>Your Binary Options</h1>
             {this.props.options && this.props.options.map(option => {
+
               let history = option.history
-              console.log(typeof history);
+
+              if(typeof history === "string"){
+                history = JSON.parse(history)
+              }
+              
               console.log(history);
-              let data = history && typeof history !== 'string' && history.map((number, index) => {
+              console.log(typeof history)
+              let data = history && history.map((number, index) => {
                 return {
                   name: "Trade #" + index.toString(),
                   value: number

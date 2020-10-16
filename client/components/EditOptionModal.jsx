@@ -65,7 +65,7 @@ class EditOptionModal extends Component {
 
             
             let values = Object.values(this.state.object)
-            console.log(values);
+      
             // if user has not set a field don't update the option
             for(let i = 0; i < values.length; i++){
               if(values[i] === "0" || values[i] === "" ){
@@ -75,7 +75,7 @@ class EditOptionModal extends Component {
             }
 
             this.props.editUserOption({
-              ...this.props.selected, ...this.state.object, userId: this.props.userId, id: this.props.selected.id
+              ...this.props.selected, ...this.state.object
             })
             this.props.editOptionModal(false)
             this.props.setSelectedOption({...this.state.object, id: this.props.selected.id, userId: this.props.userId})

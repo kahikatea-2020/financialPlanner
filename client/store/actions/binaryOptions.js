@@ -13,7 +13,9 @@ export const getUserOptions = userId => async dispatch => {
 }
 
 export const addUserOptions = option => async dispatch => {
+  
   try {
+    console.log(option);
     const optionData = await api.post('/binaryOptions/', option)
     dispatch({
       type: 'ADD_USER_OPTION',
@@ -60,8 +62,6 @@ export const deleteUserOption = id => dispatch => {
 }
 
 export const editUserOption = option => async dispatch => {
-
-  console.log(option);
   try {
     api.put(`/binaryOptions/${option.id}`, option)
     dispatch({
