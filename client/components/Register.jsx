@@ -18,25 +18,25 @@ class Register extends Component {
           <form action="">
             <h1>Sign Up</h1>
             <hr/>
-            
+
             <div className="inputContainer">
               <h4>Email</h4>
-              <input type="email" placeholder="email" onChange={(evt) => this.setState({ email: evt.target.value })} />
+              <input type="email"  onChange={(evt) => this.setState({ email: evt.target.value })} />
             </div>
             <div className="inputContainer">
               <h4>Full Name</h4>
-              <input type="text" placeholder="full name" onChange={(evt) => this.setState({ fullName: evt.target.value })} />
+              <input type="text"  onChange={(evt) => this.setState({ fullName: evt.target.value })} />
             </div>
             <div className="inputContainer">
               <h4>Password</h4>
-              <input type="password" placeholder="password" onChange={(evt) => this.setState({ password: evt.target.value })} />
+              <input type="password"  onChange={(evt) => this.setState({ password: evt.target.value })} />
             </div>
             <div className="inputContainer">
               <h4>Confirm Password</h4>
-              <input type="password" placeholder="confirm password" onChange={(evt) => this.setState({ confirmPassword: evt.target.value })} />
+              <input type="password"  onChange={(evt) => this.setState({ confirmPassword: evt.target.value })} />
             </div>
 
-            <Button variant = "dark" onClick={async () => {
+            <Button variant = "outline-light" style={{fontSize:"1.5rem", borderRadius:"10px",paddingLeft:"50px", paddingRight: "50px", marginTop: "50px"}}onClick={async () => {
 
               try {
                 await this.props.newUser({

@@ -4,6 +4,8 @@ const fn = require('./user')
 
 const authenticate = async (data, db = connection) => {
   try {
+    console.log(typeof data.email);
+    if(data.email === '') return 'You must enter an email'
     const user = await db('users').where('email', data.email).first()
     if (typeof user === 'undefined') return 'Email does not exist'
 
@@ -20,7 +22,7 @@ const authenticate = async (data, db = connection) => {
 const newUser = async (data, db = connection) => {
   const { password, confirmPassword, email, fullName } = data
   try {
-    
+
     if (password !== confirmPassword) return 'Password does not match'
     if(email === undefined) return 'You must enter an email'
     if(fullName === undefined ) return 'You must enter your full name'
