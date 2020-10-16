@@ -94,9 +94,7 @@ class BinaryOptions extends Component {
               if(typeof history === "string"){
                 history = JSON.parse(history)
               }
-              
-              console.log(history);
-              console.log(typeof history)
+
               let data = history && history.map((number, index) => {
                 return {
                   name: "Trade #" + index.toString(),

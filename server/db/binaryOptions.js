@@ -17,6 +17,12 @@ function createOption(option, db = connection) {
         .select()
         .first()
     )
+    .then(option => {
+      return {
+        ...option,
+        history: JSON.parse(option.history)
+      }
+    })
     .catch((err) => {
       // eslint-disable-next-line no-console
       console.error(err)
@@ -28,7 +34,6 @@ function getUserOptions(user_id, db = connection) {
     .select()
     .where('user_id', user_id)
     .then(options => {
-      console.log(options);
       return options.map(option => {
         return {
           ...option,

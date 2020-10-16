@@ -15,7 +15,6 @@ export const getUserOptions = userId => async dispatch => {
 export const addUserOptions = option => async dispatch => {
   
   try {
-    console.log(option);
     const optionData = await api.post('/binaryOptions/', option)
     dispatch({
       type: 'ADD_USER_OPTION',
