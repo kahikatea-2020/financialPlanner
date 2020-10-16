@@ -33,6 +33,8 @@ class BinaryOptions extends Component {
     let newOption = option
     //add rewardPercent*exposedBalance to current amount
     newOption.currentAmount = Number(newOption.currentAmount) + (Number(newOption.rewardPercent)/100)*Number(newOption.exposedBalance)
+    
+    newOption.wins++
 
     // add new trade to array
     newOption.history.push(newOption.currentAmount)
@@ -44,6 +46,9 @@ class BinaryOptions extends Component {
     let newOption = option
     //subtract exposed balance from current amount
     newOption.currentAmount = Number(newOption.currentAmount) - Number(newOption.exposedBalance)
+
+    newOption.losses++
+
     // add new trade to array
     newOption.history.push(newOption.currentAmount)
     // update database and redux store
@@ -113,6 +118,8 @@ class BinaryOptions extends Component {
                 <p>${option.exposedBalance}</p>
                 <h4>Current Balance</h4>
                 <p>${option.currentAmount}</p>
+                <h4>Win Rate</h4>
+                <p>{option.losses === 0 && option.wins === 0 ? "no trades made yet" : ((Number(option.wins)/(Number(option.wins) + Number(option.losses)))*100).toFixed(2) + "%" }</p>
                 <Button onClick = {() => this.simulateWin(option)} style={{ marginRight: "5px", marginBottom: "20px"}} variant="success">Simulate Win</Button>
                 <Button onClick = {() => this.simulateLoss(option)} style={{ marginRight: "5px", marginBottom: "20px"}} variant="danger">Simulate Loss</Button>
                 <LineChart width={1000} height={250} data={data}

@@ -3,13 +3,14 @@ exports.up = function(knex) {
   return knex.schema.createTable('binaryOptions', (table) => {
     table.increments('id').primary()
     table.integer('user_id').references('users.id')
-    table.decimal('target_amount')
-    table.decimal('reward_percent')
-    table.decimal('initial_amount')
-    table.decimal('exposed_balance')
-    table.decimal('current_amount')
-    table.string('history')
-    table.decimal('win_rate')
+    table.decimal('target_amount').defaultsTo(0)
+    table.decimal('reward_percent').defaultsTo(0)
+    table.decimal('initial_amount').defaultsTo(0)
+    table.decimal('exposed_balance').defaultsTo(0)
+    table.decimal('current_amount').defaultsTo(0)
+    table.string('history').defaultsTo('[]')
+    table.integer('wins').defaultsTo(0)
+    table.integer('losses').defaultsTo(0)
   })
 };
 
