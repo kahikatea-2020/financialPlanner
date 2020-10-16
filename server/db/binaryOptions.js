@@ -42,6 +42,8 @@ function getUserOptions(user_id, db = connection) {
 }
 
 function updateUserOption(optionId, option, db = connection) {
+  option = {...option, history: JSON.stringify(option.history)}
+  console.log(option);
   return db('binaryOptions')
     .where('id', optionId)
     .update(snakeCaseKeys(option))

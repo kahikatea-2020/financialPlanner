@@ -29,19 +29,21 @@ class BinaryOptions extends Component {
   }
 
   simulateWin = (option) => {
-    //add rewardPercent*exposedBalance to current amount
-    
-    // add new trade to array
 
+    let newOption = option
+    //add rewardPercent*exposedBalance to current amount
+    newOption.currentAmount = Number(newOption.currentAmount) + (Number(newOption.rewardPercent)/100)*Number(newOption.exposedBalance)
+
+    // add new trade to array
+    newOption.history.push(newOption.currentAmount)
     // update database and redux store
+    this.props.editUserOption(newOption)
   }
 
   simulateLoss = (option) => {
-    //subtract exposed balance from current amount
     let newOption = option
-    console.log(newOption);
+    //subtract exposed balance from current amount
     newOption.currentAmount = Number(newOption.currentAmount) - Number(newOption.exposedBalance)
-    console.log(newOption.currentAmount);
     // add new trade to array
     newOption.history.push(newOption.currentAmount)
     // update database and redux store
@@ -87,8 +89,9 @@ class BinaryOptions extends Component {
             <h1>Your Binary Options</h1>
             {this.props.options && this.props.options.map(option => {
               let history = option.history
-
-              let data = history && history.map((number, index) => {
+              console.log(typeof history);
+              console.log(history);
+              let data = history && typeof history !== 'string' && history.map((number, index) => {
                 return {
                   name: "Trade #" + index.toString(),
                   value: number
