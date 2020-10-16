@@ -4,7 +4,7 @@
   display:flex;
   align-items: center;
   justify-content: center;
-  background: #241441e8;
+  background: rgba(55, 20, 112, 0.904);
   color:white;
 }
 .carousel-item{
