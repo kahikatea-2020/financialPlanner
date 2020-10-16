@@ -11,8 +11,6 @@ class EditOptionModal extends Component {
       rewardPercent: 0,
       initialAmount: 0,
       exposedBalance: 0,
-      history: [],
-      currentAmount: 0,
     } ,
     error: false
   }
@@ -77,7 +75,7 @@ class EditOptionModal extends Component {
             }
 
             this.props.editUserOption({
-              ...this.state.object, userId: this.props.userId, id: this.props.selected.id
+              ...this.props.selected, ...this.state.object, userId: this.props.userId, id: this.props.selected.id
             })
             this.props.editOptionModal(false)
             this.props.setSelectedOption({...this.state.object, id: this.props.selected.id, userId: this.props.userId})
