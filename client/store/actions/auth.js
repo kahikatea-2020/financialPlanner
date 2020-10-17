@@ -27,6 +27,7 @@ export const newUser = (data) => async (dispatch) => {
   try {
     const response = await api.post(`/auth/register`, data)
     const { token, ...userData } = response.data
+    console.log(userData);
     localStorage.setItem('jwtToken', token)
     setAuthorizationToken(token)
     dispatch(setAuth(userData))
