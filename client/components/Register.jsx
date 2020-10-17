@@ -49,7 +49,7 @@ class Register extends Component {
                 location.replace('/#/profile')
 
               } catch (err) {
-                this.setState({ err: err.message.stack })
+                this.setState({ err: err.stack })
               }
             }}>Sign Up</Button>
           </form>
