@@ -44,7 +44,7 @@ const newUser = async (data, db = connection) => {
     if (err.message.includes('insert into `users` (`email`, `password`)')) {
       return "Email is already in use"
     } else {
-      return err.message
+      return err.message.stack
     }
 
 
