@@ -20,6 +20,7 @@ const authenticate = async (data, db = connection) => {
 }
 
 const newUser = async (data, db = connection) => {
+  console.log(data);
   const { password, confirmPassword, email, fullName } = data
   try {
 
