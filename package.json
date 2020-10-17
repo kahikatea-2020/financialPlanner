@@ -7,7 +7,7 @@
   "author": "EDA",
   "license": "ISC",
   "scripts": {
-    "client": "webpack-dev-server --hot --inline",
+     "client": "webpack-dev-server --hot --inline",
     "dev:h": "run-p client dev:server",
     "dev": "run-p dev:client dev:server",
     "dev:client": "webpack --watch",
@@ -16,11 +16,11 @@
     "build": "webpack",
     "server": "node server",
     "test": "jest --watchAll",
-    "knex": "knex --knexfile server/db/knexfile.js",
+    "knex": "knex --knexfile knexfile.js",
     "postinstall": "run-s db:reset build",
     "db:reset": "run-s db:delete db:migrate db:seed",
     "db:refresh": "run-s db:rollback db:migrate db:seed",
-    "db:delete": "rm -f server/db/dev.sqlite3",
+    "db:delete": "rm -f dev.sqlite3",
     "db:rollback": "npm run knex migrate:rollback",
     "db:migrate": "npm run knex migrate:latest",
     "db:seed": "npm run knex seed:run"
