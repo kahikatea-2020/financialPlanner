@@ -23,7 +23,7 @@ const newUser = async (data, db = connection) => {
   const { password, confirmPassword, email, fullName } = data
   try {
 
-    if (password !== confirmPassword) return 'Password does not match'
+    if(password !== confirmPassword) return 'Password does not match'
     if(email === undefined) return 'You must enter an email'
     if(fullName === undefined ) return 'You must enter your full name'
     if(password === undefined) return 'You must enter a password'
@@ -40,11 +40,11 @@ const newUser = async (data, db = connection) => {
     })
     return { id, email, fullName }
   } catch (err) {
-    console.log(typeof err.message);
+
     if (err.message.includes('insert into `users` (`email`, `password`)')) {
       return "Email is already in use"
     } else {
-      return err.message.stack
+      return err.stack
     }
 
 
